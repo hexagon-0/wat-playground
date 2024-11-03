@@ -8,7 +8,17 @@
   </head>
   <body>
     <div id="app" style="display: flex; justify-content: center;">
-      <textarea id="editor" cols="100"></textarea>
+      <div>
+        <div>
+          <textarea
+            id="editor" cols="100" rows="30"
+            autocomplete="off" spellcheck="false"
+          ></textarea>
+        </div>
+        <div>
+          <button id="instantiate" type="button" disabled="true">Instantiate</button>
+        </div>
+      </div>
       <div>
         <canvas id="display" width="32" height="32" style="width: 320px; height: 320px; image-rendering: pixelated;"></canvas>
       </div>
