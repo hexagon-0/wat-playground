@@ -5,21 +5,28 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebAssembly Text Format Playground</title>
+    <style>
+      html {
+        background-color: slategray;
+      }
+    </style>
   </head>
   <body>
-    <div id="app" style="display: flex; justify-content: center;">
-      <div>
+    <div id="app" style="width: fit-content; margin: auto;">
+      <div style="display: inline-block;">
         <div>
           <textarea
-            id="editor" cols="100" rows="30"
+            id="editor" cols="70" rows="30"
             autocomplete="off" spellcheck="false"
           ></textarea>
         </div>
         <div>
           <button id="instantiate" type="button" disabled="true">Instantiate</button>
+          <button id="run" type="button" disabled="true">Run</button>
+          <button id="stop" type="button" disabled="true">Stop</button>
         </div>
       </div>
-      <div>
+      <div style="display: inline-block;">
         <canvas id="display" width="32" height="32" style="width: 320px; height: 320px; image-rendering: pixelated;"></canvas>
       </div>
     </div>
