@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const memory = new WebAssembly.Memory({ initial: 1 });
   const displayData = new Uint8ClampedArray(memory.buffer, 0x200, 1024);
   const displayImage = ctx.createImageData(32, 32);
+  const inputMemory = new Uint8ClampedArray(memory.buffer, 0x100, 1);
 
   const colorMap: Record<number, number> = {
     [0]: 0x000000ff,
@@ -46,6 +47,23 @@ document.addEventListener('DOMContentLoaded', function () {
     updateFn();
     draw();
   }
+
+  const InputMap: Record<string, number> = {
+    'a': 0b00000001,
+    'd': 0b00000010,
+    'w': 0b00000100,
+    's': 0b00001000,
+  };
+
+  canvas.addEventListener('keydown', function (evt) {
+    evt.preventDefault();
+    if (evt.key in InputMap) inputMemory[0] |= InputMap[evt.key];
+  });
+  
+  canvas.addEventListener('keyup', function (evt) {
+    evt.preventDefault();
+    if (evt.key in InputMap) inputMemory[0] &= ~InputMap[evt.key];
+  });
 
   wabt().then(wabt => {
     buttonInstantiate.disabled = false;
